@@ -10,7 +10,7 @@ module.exports = {
   env: {
     base_url: base_url,
     api_base_url: process.env.BASE_URL || 'https://api.lookformenu.com',
-    title: '路可菜單網 look for menu',
+    title: '路可菜單網 look for menu~',
     description: '路可菜單網(look for menu)蒐集整理各種餐廳菜單、飲料店菜單、速食店菜單、早餐店菜單、咖啡廳菜單、便當菜單、DM菜單，方便查詢。',
     session: null
   },
