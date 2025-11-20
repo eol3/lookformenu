@@ -42,7 +42,7 @@
     "vue-google-adsense": "^1.8.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "nodemon": "^3.1.11"
   },
   "config": {
     "nuxt": {
