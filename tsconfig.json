@@ -1,0 +1,24 @@
+{
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "files": [],
+  "references": [
+    {
+      "path": "./.nuxt/tsconfig.app.json"
+    },
+    {
+      "path": "./.nuxt/tsconfig.server.json"
+    },
+    {
+      "path": "./.nuxt/tsconfig.shared.json"
+    },
+    {
+      "path": "./.nuxt/tsconfig.node.json"
+    }
+  ],
+  "compilerOptions": {
+    // ... other options
+    "types": ["@types/node"]
+    // if you use vite in your project you might also need:
+    // "types": ["@types/node", "vite/client"] 
+  },
+}
