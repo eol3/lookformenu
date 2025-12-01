@@ -52,5 +52,6 @@ function clear() {
       </nav>
     </div>
     <slot />
+    <br />
   </div>
 </template>

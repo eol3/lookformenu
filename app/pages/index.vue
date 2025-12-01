@@ -41,7 +41,10 @@ function setQueryObj(route) {
       <NuxtLink :to="'/menu/' + item.id" class="text-decoration-none">
         <div class="card mb-3">
           <img v-if="item.first_img_filename" :src="'/static/image/' + item.id + '/' + item.first_img_filename" class="card-img-top" style="height:200px;object-fit: contain;">
-          <div class="card-body">
+          <div v-else class="card-img-top bg-body-secondary d-flex align-items-center justify-content-center text-primary-emphasis" style="height:200px;">
+            No image
+          </div>
+          <div class="card-body" style="height:80px;">
             <h5 class="card-title">{{ item.store }}</h5>
           </div>
         </div>
