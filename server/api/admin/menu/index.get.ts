@@ -1,0 +1,42 @@
+interface Query {
+  word: string;
+  limit: number;
+  offset: number;
+  sortBy: string;
+  orderBy: string;
+}
+
+export default defineEventHandler(async (event) => {
+
+  const { user } = await requireUserSession(event)
+
+  const query: Query = getQuery(event)
+  // console.log(query)
+
+  let result: number[] = []
+	let dbQuery = useKnex('menu')
+	
+  if (query.word) {
+    dbQuery.where('store', 'LIKE', '%' + query.word + '%')
+  }
+	
+  if (query.limit) {
+    dbQuery.limit(query.limit)
+  } else {
+    dbQuery.limit(10)
+  }
+
+  if (query.offset) {
+    dbQuery.offset(query.offset)
+  } else {
+    dbQuery.offset(0)
+  }
+
+  if (query.sortBy && query.orderBy) {
+		dbQuery.orderBy(query.sortBy, query.orderBy)
+	}
+
+	result = await dbQuery
+	
+	return result
+})

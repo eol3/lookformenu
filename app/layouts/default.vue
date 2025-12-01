@@ -1,3 +1,22 @@
+<script setup>
+import { ref } from 'vue';
+const word = ref('')
+const router = useRouter()
+const route = useRoute()
+if (route.query.word) word.value = route.query.word
+function search() {
+  if (word.value !== '') {
+    router.push('/?word=' + word.value)
+  } else {
+    router.push('/')
+  }
+}
+function clear() {
+  word.value = ''
+  router.push('/')
+}
+</script>
+
 <template>
   <div class="container">
     <div class="headbar mb-4">
@@ -13,7 +32,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="#">星號標記</a>
+                <NuxtLink class="nav-link" to="/mark">星號標記</NuxtLink>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">瀏覽紀錄</a>
@@ -21,8 +40,11 @@
             </ul>
             <div class="d-flex">
               <div class="input-group">
-                <input class="form-control" placeholder="Search" aria-label="Search"/>
-                <button class="btn btn-outline-secondary">Search</button>
+                <input class="form-control" placeholder="Search" v-model="word" @keyup.enter="search()"/>
+                <span v-if="route.query.word !== undefined" class="input-group-text cursor-pointer" @click="clear()">
+                  X
+                </span>
+                <button class="btn btn-outline-secondary" @click="search()">Search</button>
               </div>
             </div>
           </div>

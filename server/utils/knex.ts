@@ -1,17 +1,19 @@
-const config = {
-  client: 'mysql',
+const config = useRuntimeConfig()
+
+const knexConfig = {
+  client: 'mysql2',
   connection: {
-    host: process.env.DB_HOST,
-	  user: process.env.DB_USER,
-	  password: process.env.DB_PASS,
-    database: "lookformenu",
-    timezone: process.env.TZ
+    host: config.mysql.host,
+    user: config.mysql.user,
+    password: config.mysql.password,
+    database: config.mysql.database,
+    timezone: config.mysql.tz,
   },
   pool: {
     min: 0,
     max: 3,
     afterCreate: function(connection: any, callback: any) {
-      connection.query("SET time_zone = '" + process.env.TZ + "';", function(err: any) {
+      connection.query('SET time_zone = "' + config.mysql.tz + '"', function(err: any) {
         callback(err, connection);
       });
     }
@@ -20,4 +22,4 @@ const config = {
 
 import knex from 'knex';
 
-export const useKnex = knex(config);
+export const useKnex = knex(knexConfig);
