@@ -1,4 +1,10 @@
 <script setup>
+useHead({
+  title: '路可菜單網',
+  meta: [
+    { name: 'description', content: '蒐集整理各家商店菜單' },
+  ],
+})
 import { ref } from 'vue';
 const word = ref('')
 const router = useRouter()

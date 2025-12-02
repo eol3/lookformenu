@@ -1,4 +1,10 @@
 <script setup lang="ts">
+useHead({
+  title: '管理後臺｜路可菜單網',
+  meta: [
+    { name: 'description', content: '蒐集整理各家商店菜單' },
+  ],
+})
 const { user, clear: clearSession } = useUserSession()
 
 async function logout () {

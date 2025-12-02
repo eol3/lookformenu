@@ -2,6 +2,9 @@
 const route = useRoute()
 const router = useRouter()
 const { data, error } = await useFetch('/api/menu/' + route.params.id)
+useHead({
+  title: data.value.store + '｜路可菜單網',
+})
 const { data: images } = await useFetch('/api/image/' + route.params.id)
 import { useLocalStorage } from '@vueuse/core'
 
