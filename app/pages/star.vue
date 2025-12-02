@@ -1,15 +1,17 @@
 <script setup>
 import { ref, reactive } from 'vue';
-import { getData } from 'nuxt-storage/local-storage';
+import { useLocalStorage } from '@vueuse/core'
 
 const route = useRoute()
 
 const currentPage = ref(1)
 const perPage = ref(12)
 
+const starData = useLocalStorage('menu-star', [])
+
 const queryObj = reactive({
   word: null,
-  ids: getData('menu-star') || null,
+  ids: starData.value.join(',') || null,
   limit: perPage.value,
 	offset: perPage.value * (currentPage.value - 1),
   sortBy: 'id',

@@ -2,47 +2,35 @@
 const route = useRoute()
 const router = useRouter()
 const { data, error } = await useFetch('/api/menu/' + route.params.id)
-const { data: images } = await useFetch('/api/admin/image/' + route.params.id)
-import { getData, setData } from 'nuxt-storage/local-storage';
+const { data: images } = await useFetch('/api/image/' + route.params.id)
+import { useLocalStorage } from '@vueuse/core'
 
-let starData = null
 const isStar = ref(false)
-starData = getData('menu-star')
-if (starData) {
-  starData = starData.split(',')
-  if (starData.includes(route.params.id)) {
-    isStar.value = true
-  }
-} else {
-  starData = []
-}
+const starData = useLocalStorage('menu-star', [])
 
-let historyData = []
-if (getData('menu-history')) {
-  historyData = getData('menu-history').split(',')
-  let index = historyData.indexOf(route.params.id)
-  if (index !== -1) {
-    historyData.splice(index, 1)
-  }
+if (starData.value.includes(route.params.id)) {
+  isStar.value = true
 }
-historyData.push(route.params.id)
-setData('menu-history', historyData.join(','), 30, 'd')
 
 function start() {
-  if (!starData.includes(route.params.id)) {
-    starData.push(route.params.id)
-    setData('menu-star', starData.join(','), 30, 'd')
-    isStar.value = true
-  }
+  starData.value.push(route.params.id)
+  isStar.value = true
 }
 
 function unStart() {
-  if (starData.includes(route.params.id)) {
-    starData = starData.filter(item => item != route.params.id)
-    setData('menu-star', starData.join(','))
+  const index = starData.value.indexOf(route.params.id)
+  if (index !== -1) {
+    starData.value.splice(index, 1)
     isStar.value = false
   }
 }
+
+const historyData = useLocalStorage('menu-history', [])
+const index = historyData.value.indexOf(route.params.id)
+if (index !== -1) {
+  historyData.value.splice(index, 1)
+}
+historyData.value.push(route.params.id)
 </script>
 
 <template>

@@ -14,8 +14,10 @@ export default defineNuxtConfig({
     '~/assets/main.css',
   ],
 
-  modules: ['nuxt-auth-utils', 'nuxt-file-storage'],
+  modules: ['nuxt-auth-utils', 'nuxt-file-storage', '@vueuse/nuxt'],
   runtimeConfig: {
+    adminUserEmail: process.env.ADMIN_USER_EMAIL,
+    adminPassword: process.env.ADMIN_PASSWORD,
     mysql: {
       host: process.env.DB_HOST || 'localhost',
       user: process.env.DB_USER,
