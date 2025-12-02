@@ -32,10 +32,10 @@ function clear() {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-lg-0">
               <li class="nav-item">
-                <NuxtLink class="nav-link" to="/mark">星號標記</NuxtLink>
+                <NuxtLink class="nav-link" to="/star">星號標記</NuxtLink>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">瀏覽紀錄</a>
+                <NuxtLink class="nav-link" to="/history">瀏覽紀錄</NuxtLink>
               </li>
             </ul>
             <div class="d-flex">

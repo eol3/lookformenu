@@ -1,5 +1,6 @@
 interface Query {
   word: string;
+  ids: string;
   limit: number;
   offset: number;
   sortBy: string;
@@ -18,6 +19,14 @@ export default defineEventHandler(async (event) => {
 
   if (query.word) {
     dbQuery.where('store', 'LIKE', '%' + query.word + '%')
+  }
+  
+  if (query.ids === '') {
+    return []
+  }
+  if (query.ids) {
+    let idsArray = query.ids.split(',').map(id => parseInt(id));
+    dbQuery.whereIn('id', idsArray)
   }
 	
   if (query.limit) {
