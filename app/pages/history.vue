@@ -39,9 +39,9 @@ function setQueryObj(route) {
 
 <template>
   <div class="row">
-    <h3>星號標記的菜單</h3>
+    <h3>瀏覽過的菜單</h3>
     <div v-if="list.length === 0">
-      目前沒有星號標記的菜單
+      目前沒有瀏覽過的菜單
     </div>
     <div class="col-6 col-md-4 col-lg-3" v-for="(item, key) in list" :key="key">
       <NuxtLink :to="'/menu/' + item.id" class="text-decoration-none">
